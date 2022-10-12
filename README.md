@@ -16,6 +16,7 @@
    1. 인원은 최소 2명, 최대 100명이다.
    2. Participant의 수 만큼 Leg가 생성된다.
    3. 입력의 순서가 곧 Leg의 순서다.
+   4. Participant의 수가 Destination의 수보다 작다면, 그 차이만큼 "GHOST" 란 이름을 가진 참여자가 생성된다.
 
 3. Rung
    1. 3 이상 20 이하로 사용자가 설정할 수 있다.
@@ -24,8 +25,7 @@
 
 4. Destination
    1. 최대 입력 가능한 Destination의 수는 Participant와 같아야 한다.
-   2. Destination의 수는 Participant보다 많을 수 없다.
-   3. Destination의 수가 Participant보다 작다면, 그 차이만큼 "NONE" 이란 상태값을 가진 Destination이 자동으로 추가된다.
+   2. Destination의 수가 Participant보다 작다면, 그 차이만큼 "NONE" 이란 상태값을 가진 Destination이 자동으로 추가된다.
 
 5. 게임의 등록
    1. 사다리 게임을 등록할 때는 Participant의 목록, Destination의 목록이 필수로 필요하며, Rung의 개수는 옵션이다.
@@ -39,4 +39,30 @@
       - Participant의 Destination
    3. 같은 ID로 조회시 조회 결과는 항상 같아야만 한다.
 
+```kotlin
+// 사다리 게임 생성 예시
+class LadderCreation(
+   val participants: List<String>,
+   val destinations: List<String>,
+   var rung: Int?
+)
+
+// 결과 형태 예시
+class Result(
+   val order : Int, // 순서
+   val participant: String, // 참여자의 이름
+   val destination : String, // 목적지(결과)의 이름
+   val routes : List<Int>, // 참여자가 목적지까지 간 경로(Leg의 번호)
+)
+```
 ---
+
+## 제약사항 1차
+- Database: H2 DB를 사용한다.
+- Web Layer는 구현 대상에서 제외한다.
+- 테스트 코드 커버리지는 80% 이상을 충족해야한다.
+- 어떤 환경에서도 실행 가능해야 한다.
+- JPA를 무조건 사용한다.
+
+---
+
