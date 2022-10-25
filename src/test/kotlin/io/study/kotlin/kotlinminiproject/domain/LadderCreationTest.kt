@@ -9,8 +9,10 @@ internal class LadderCreationTest {
     @DisplayName("생성 테스트")
     @Test
     fun create() {
-        val ladderCreation1 = LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
-        val ladderCreation2 = LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
+        val ladderCreation1 =
+            LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
+        val ladderCreation2 =
+            LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
 
         assertEquals(ladderCreation1, ladderCreation2)
     }
@@ -18,8 +20,10 @@ internal class LadderCreationTest {
     @DisplayName("생성 테스트2 - 참가자의 이름이 다르면 false")
     @Test
     fun create2() {
-        val ladderCreation1 = LadderCreation(listOf("서영덕", "서동성", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
-        val ladderCreation2 = LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
+        val ladderCreation1 =
+            LadderCreation(listOf("서영덕", "서동성", "홍석민"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
+        val ladderCreation2 =
+            LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기"), 3)
 
         assertNotEquals(ladderCreation1, ladderCreation2)
     }
@@ -42,5 +46,29 @@ internal class LadderCreationTest {
         }
 
         assertEquals("사다리의 단계는 3개 이상 20개 이하 이어야 합니다.", exception.message)
+    }
+
+    @DisplayName("생성 테스트5 - Participant 보다 Destination 이 많으면, 더 많은 수 많큼 GHOST 라는 이름을 가진 참여자가 생성된다.")
+    @Test
+    fun create5() {
+        val ladderCreation =
+            LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기", "커피 머신 청소", "화장실 비품 채우기", "쓰레기통 비우기"), 3)
+
+        val participants = ladderCreation.participants
+        val countOfGhost = participants.participants.count { participant -> participant.name === "GHOST" }
+
+        assertEquals(1, countOfGhost)
+    }
+
+    @DisplayName("생성 테스트6 - Destination 보다 Participant 이 많으면, 더 많은 수 많큼 NONE 라는 이름을 가진 Destination 생성된다.")
+    @Test
+    fun create6() {
+        val ladderCreation =
+            LadderCreation(listOf("서영덕", "서동성", "선용주"), listOf("화분에 물 주기"), 3)
+
+        val destinations = ladderCreation.destinations
+        val countOfGhost = destinations.destinations.count { participant -> participant.name === "NONE" }
+
+        assertEquals(2, countOfGhost)
     }
 }

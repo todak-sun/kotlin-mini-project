@@ -4,7 +4,7 @@ class Rung(count: Int?) {
     var count: Int
     init {
         if (count != null) {
-            if(count < 3 || count > 20) {
+            if (count < 3 || count > 20) {
                 throw IllegalArgumentException("사다리의 단계는 3개 이상 20개 이하 이어야 합니다.")
             }
         }

@@ -1,5 +1,7 @@
 package io.study.kotlin.kotlinminiproject.domain
 
+import java.lang.Math.abs
+
 class LadderCreation(participants: List<String>, destinations: List<String>, rung: Int?) {
     var participants: Participants
     var destinations: Destinations
@@ -9,6 +11,16 @@ class LadderCreation(participants: List<String>, destinations: List<String>, run
         this.participants = Participants(participants)
         this.destinations = Destinations(destinations)
         this.rung = Rung(rung)
+
+        val difference = participants.size - destinations.size
+        if (difference < 0) {
+            this.participants.addGhost(abs(difference))
+        }
+
+        if (difference > 0) {
+            this.destinations.addNone(difference)
+        }
+
     }
 
     override fun equals(other: Any?): Boolean {
