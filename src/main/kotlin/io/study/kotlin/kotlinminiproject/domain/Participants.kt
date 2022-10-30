@@ -16,6 +16,9 @@ class Participants(participants: List<String>) {
             this.participants += Participant("GHOST")
         }
     }
+    fun size(): Int {
+        return this.participants.size
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,5 +34,4 @@ class Participants(participants: List<String>) {
     override fun hashCode(): Int {
         return participants.hashCode()
     }
-
 }
