@@ -40,6 +40,6 @@ internal class RungTest {
     fun create4() {
         val rung = Rung(null)
 
-        assertThat(rung.count, allOf(greaterThan(3), lessThan(20)))
+        assertThat(rung.count, allOf(greaterThanOrEqualTo(3), lessThanOrEqualTo(20)))
     }
 }

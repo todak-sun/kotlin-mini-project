@@ -10,44 +10,25 @@ class Ladder {
     }
 
     constructor(ladderCreation: LadderCreation) {
-        val legsCount = ladderCreation.participants.size() - 1
-        for (row in 0 until ladderCreation.rung.count) {
+        val columCount = ladderCreation.participants.size() - 1
+        val rowCount = ladderCreation.rung.count;
+        (0 until rowCount).forEach { row ->
             var legs: List<Leg> = ArrayList()
-            for (colum in 0..legsCount) {
-                if (colum == legsCount) {
-                    legs += (Leg(left = (legs[colum - 1].right), right = false))
-                    continue
-                }
-                if (colum == 0 || !legs[colum - 1].right) {
-                    legs += Leg(left = false, right = Random.nextBoolean())
-                    continue
-                }
-                if (legs[colum - 1].right) {
-                    legs += Leg(left = true, right = false)
-                    continue
+            (0..columCount).forEach { colum ->
+                when {
+                    colum == columCount -> {
+                        legs += (Leg(left = (legs[colum - 1].right), right = false))
+                    }
+                    colum == 0 || !legs[colum - 1].right -> {
+                        legs += Leg(left = false, right = Random.nextBoolean())
+                    }
+                    legs[colum - 1].right -> {
+                        legs += Leg(left = true, right = false)
+                    }
                 }
             }
             this.ladder += Legs(legs)
         }
-    }
-
-    fun getLegs(): List<Legs> {
-        return this.ladder;
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Ladder
-
-        if (ladder != other.ladder) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return ladder.hashCode()
     }
 
     fun getResults(ladderCreation: LadderCreation): List<Result> {
@@ -74,6 +55,25 @@ class Ladder {
         }
 
         return routes
+    }
+
+    fun getLegs(): List<Legs> {
+        return this.ladder
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Ladder
+
+        if (ladder != other.ladder) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return ladder.hashCode()
     }
 
 }
