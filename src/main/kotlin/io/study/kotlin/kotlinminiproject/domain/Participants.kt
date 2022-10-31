@@ -16,6 +16,11 @@ class Participants(participants: List<String>) {
             this.participants += Participant("GHOST")
         }
     }
+
+    fun get(i: Int): String {
+        return this.participants[i - 1].name
+    }
+
     fun size(): Int {
         return this.participants.size
     }

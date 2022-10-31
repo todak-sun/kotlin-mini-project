@@ -12,4 +12,12 @@ data class Legs(val legs: List<Leg>) {
         }
         return currentPosition
     }
+
+    fun get(i: Int): Leg {
+        return this.legs[i]
+    }
+
+    fun size(): Int {
+        return this.legs.size
+    }
 }

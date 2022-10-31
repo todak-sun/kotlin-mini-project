@@ -7,6 +7,10 @@ class Destinations(destinations: List<String>) {
         this.destinations = destinations.asSequence().map{Destination(it)}.toList()
     }
 
+    fun get(i: Int): String {
+        return this.destinations[i - 1].name
+    }
+
     fun addNone(count: Int) {
         for (i in 0 until count) {
             this.destinations += Destination("NONE")
@@ -27,4 +31,5 @@ class Destinations(destinations: List<String>) {
     override fun hashCode(): Int {
         return destinations.hashCode()
     }
+
 }
