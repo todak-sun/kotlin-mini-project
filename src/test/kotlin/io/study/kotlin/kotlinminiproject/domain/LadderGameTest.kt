@@ -14,8 +14,8 @@ internal class LadderGameTest {
 
     }
 
-    //@DisplayName("[정상] [1] 사다리 게임이 정상적으로 생성된다. (참가자 = 4명, 목적지 = 4개)")
-    //@Test
+    @DisplayName("[정상] [1] 사다리 게임이 정상적으로 생성된다. (참가자 = 4명, 목적지 = 4개)")
+    @Test
     internal fun pass_1() {
         val request = LadderGameStartRequest(
             participants = listOf("Ashe", "Akali", "Katarina", "Caitlyn"),
