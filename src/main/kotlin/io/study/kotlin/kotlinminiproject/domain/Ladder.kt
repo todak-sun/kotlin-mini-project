@@ -3,6 +3,7 @@ package io.study.kotlin.kotlinminiproject.domain
 import kotlin.random.Random
 
 class Ladder {
+\
     private var ladder: List<Legs> = ArrayList();
 
     constructor(ladder: List<Legs>) {
@@ -29,11 +30,29 @@ class Ladder {
             }
             this.ladder += Legs(legs)
         }
+
+       
+        /**
+         *   for( int i = 0; i < list.size(); i++ ) {
+         *   if( i === 0 ) {}
+         *   else if ( i === list.size() - 1 ) {          }
+         *   else {}
+         *   }
+
+             => 
+
+             var list = ...
+             list.add(First)
+             for( 중간에 있는 요소들 순회 ) {
+              list.add(작업)
+             }
+             list.add(Last)
+
+        **/
     }
 
     fun getResults(ladderCreation: LadderCreation): List<Result> {
-        val participants = ladderCreation.participants
-        val destinations = ladderCreation.destinations
+        val (participants, destinations)= ladderCreation
         var results = ArrayList<Result>()
 
         for (order in 1..participants.size()) {
