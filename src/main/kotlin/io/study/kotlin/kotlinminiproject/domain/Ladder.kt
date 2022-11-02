@@ -6,6 +6,7 @@ class Ladder {
 \
     private var ladder: List<Legs> = ArrayList();
 
+    //companion object 활용한 생성자 메서드로 정리
     constructor(ladder: List<Legs>) {
         this.ladder = ladder
     }
