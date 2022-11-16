@@ -8,6 +8,4 @@ class Leg(
 ) {
     private var left: Leg? = null
     private var right: Leg? = null
-
-
 }
